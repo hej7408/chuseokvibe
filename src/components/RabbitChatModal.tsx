@@ -49,6 +49,10 @@ export const RabbitChatModal: React.FC<RabbitChatModalProps> = ({ isOpen, onClos
         body: JSON.stringify({ message: textToSend }),
       });
 
+      if (!res.ok) {
+        throw new Error('API request failed');
+      }
+
       const data = await res.json();
       playSound('sparkle');
 
