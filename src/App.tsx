@@ -13,6 +13,7 @@ import { CharyePuzzleGame } from './components/CharyePuzzleGame';
 import { ChuseokQuiz } from './components/ChuseokQuiz';
 import { BadgeModal } from './components/BadgeModal';
 import { ChuseokStoryModal } from './components/ChuseokStoryModal';
+import { RabbitChatModal } from './components/RabbitChatModal';
 import { toggleMute, getMuteState, playSound } from './utils/audio';
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
   const [isMuted, setIsMuted] = useState(false);
   const [isBadgeModalOpen, setIsBadgeModalOpen] = useState(false);
   const [isStoryModalOpen, setIsStoryModalOpen] = useState(false);
+  const [isChatModalOpen, setIsChatModalOpen] = useState(false);
 
   // Game progress state
   const [progress, setProgress] = useState<GameProgress>(() => {
@@ -106,7 +108,11 @@ export default function App() {
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.25 }}
             >
-              <MainHub onNavigate={handleNavigate} progress={progress} />
+              <MainHub
+                onNavigate={handleNavigate}
+                progress={progress}
+                onOpenChat={() => setIsChatModalOpen(true)}
+              />
             </motion.div>
           )}
 
@@ -168,6 +174,12 @@ export default function App() {
       <ChuseokStoryModal
         isOpen={isStoryModalOpen}
         onClose={() => setIsStoryModalOpen(false)}
+      />
+
+      {/* Moon Rabbit AI Chat & Wish Modal (Server-side secured) */}
+      <RabbitChatModal
+        isOpen={isChatModalOpen}
+        onClose={() => setIsChatModalOpen(false)}
       />
     </div>
   );

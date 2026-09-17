@@ -8,9 +8,10 @@ import { playSound } from '../utils/audio';
 interface MainHubProps {
   onNavigate: (screen: ScreenType) => void;
   progress: GameProgress;
+  onOpenChat?: () => void;
 }
 
-export const MainHub: React.FC<MainHubProps> = ({ onNavigate, progress }) => {
+export const MainHub: React.FC<MainHubProps> = ({ onNavigate, progress, onOpenChat }) => {
   const [rabbitQuoteIndex, setRabbitQuoteIndex] = useState(0);
 
   const rabbitQuotes = [
@@ -133,13 +134,27 @@ export const MainHub: React.FC<MainHubProps> = ({ onNavigate, progress }) => {
         </div>
 
         {/* Central Rabbit Guide Section */}
-        <div className="mb-8 flex justify-center">
+        <div className="mb-8 flex flex-col items-center gap-3">
           <RabbitCharacter
             message={rabbitQuotes[rabbitQuoteIndex]}
             mood="happy"
             size="md"
             onRabbitClick={handleRabbitClick}
           />
+          {onOpenChat && (
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                playSound('tap');
+                onOpenChat();
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400/20 hover:bg-amber-400/30 border border-amber-300/40 text-amber-200 text-xs sm:text-sm font-jua shadow-lg backdrop-blur-sm transition-colors cursor-pointer"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-spin" />
+              <span>달토끼에게 질문 & 추석 소원 빌기 🌕</span>
+            </motion.button>
+          )}
         </div>
 
         {/* 3 Main Activity Menu Cards (Tactile, large, responsive) */}
