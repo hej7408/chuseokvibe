@@ -103,9 +103,9 @@ app.post('/api/rabbit-chat', async (req: Request, res: Response) => {
 });
 
 async function startServer() {
-  // Redirect root path to /chuseok_vibe/ for GitHub Pages preview compatibility
+  // Redirect root path to /chuseokvibe/ for GitHub Pages preview compatibility
   app.get('/', (_req: Request, res: Response) => {
-    res.redirect('/chuseok_vibe/');
+    res.redirect('/chuseokvibe/');
   });
 
   // Vite middleware for development
@@ -118,9 +118,9 @@ async function startServer() {
   } else {
     // In production, serve the compiled static SPA from dist
     const distPath = path.join(process.cwd(), 'dist');
-    app.use('/chuseok_vibe', express.static(distPath));
+    app.use('/chuseokvibe', express.static(distPath));
     app.use(express.static(distPath));
-    app.get('/chuseok_vibe/*', (_req: Request, res: Response) => {
+    app.get('/chuseokvibe/*', (_req: Request, res: Response) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
     app.get('*', (_req: Request, res: Response) => {
