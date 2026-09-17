@@ -68,12 +68,23 @@ export const RabbitChatModal: React.FC<RabbitChatModalProps> = ({ isOpen, onClos
         ]);
       }
     } catch {
-      playSound('bounce');
+      playSound('sparkle');
+      // Fallback smart response for static environments like GitHub Pages
+      let fallbackText = '풍성한 가을바람과 함께 네 소원이 꼭 이루어질 거야! 한가위 복 많이 받으렴 🌾';
+      if (textToSend.includes('반달') || textToSend.includes('모양') || textToSend.includes('송편')) {
+        fallbackText = '반달은 앞으로 점점 더 커져서 보름달이 되듯이, 우리 친구의 꿈과 지혜도 무럭무럭 자라나라는 의미가 담겨 있단다! 🥟';
+      } else if (textToSend.includes('보름달') || textToSend.includes('소원')) {
+        fallbackText = '추석의 밝고 둥근 보름달은 풍요와 완성을 상징해! 달님께 온 가족의 건강과 행복을 빌면 소원이 쏙 이루어진단다 🌕';
+      } else if (textToSend.includes('강강술래')) {
+        fallbackText = '강강술래는 보름달 아래에서 이웃들이 다 함께 손을 잡고 노래하며 둥글게 도는 신나는 유네스코 전통 놀이란다! 💃';
+      } else if (textToSend.includes('건강') || textToSend.includes('가족') || textToSend.includes('행복')) {
+        fallbackText = '정말 따뜻하고 착한 소원이구나! 올 한가위에는 온 가족이 아프지 않고 늘 웃음꽃만 활짝 피어나길 달토끼가 응원할게! ✨';
+      }
       setChatHistory((prev) => [
         ...prev,
         {
           sender: 'rabbit',
-          text: '달나라 구름이 살짝 가려서 대답을 못 들었어! 그래도 언제나 널 응원하고 있단다 🌕',
+          text: fallbackText,
         },
       ]);
     } finally {
