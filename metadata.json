@@ -1,0 +1,6 @@
+{
+  "name": "보름달 토끼와 함께하는 추석 대모험",
+  "description": "초등학생들이 송편 빚기, 홍동백서 차례상 차리기, 추석 퀴즈를 즐기며 한국 전통 명절의 의미와 풍습을 배우는 인터랙티브 교육용 게임 앱",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
