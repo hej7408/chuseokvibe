@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig({
     base: '/chuseokvibe/',
-    plugins: [react(), tailwindcss()],
+    plugins: [react(), tailwindcss(), apiDevPlugin()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
